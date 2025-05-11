@@ -20,9 +20,7 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 
-@SpringBootTest(classes = TestApplication.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@CucumberContextConfiguration
-public class PersonagemStepsDefinitions {
+public class PersonagemStepsDefinitions extends BaseStepDefinitions {
 
     private Response response;
     private String jsonBody;
