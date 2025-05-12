@@ -30,6 +30,7 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
         basePath = "/api/v1";
     }
 
+    // ----- CENÁRIO: cadastrado de usuario ----
     @Dado("que existe um usuário cadastrado com nome {string} e senha {string}")
     public void queExisteUmUsuarioCadastradoComNomeESenha(String username, String password) {
         this.username = "admin";
@@ -51,8 +52,6 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
                 .body(jsonBody)
                 .when()
                 .post("/auth/login");
-
-        System.out.println("Resposta de login: " + response.asPrettyString());
     }
 
     @Então("devo receber status {int}")
@@ -74,6 +73,7 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
         assertEquals(3, tokenParts.length, "O token JWT deve ter 3 partes");
     }
 
+    // ----- CENÁRIO: realizar login com credenciais válidas ----
     @Dado("que realizei login com credenciais válidas")
     public void queRealizeiLoginComCredenciaisValidas() {
 
@@ -98,8 +98,6 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
 
         loginResponse.then().statusCode(HttpStatus.SC_OK);
         assertNotNull(authToken, "O token não pode ser nulo");
-
-        System.out.println("Login realizado com sucesso. Token: " + authToken);
     }
 
     @Quando("utilizo o token recebido para acessar {string}")
@@ -110,14 +108,11 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
                 .header("Authorization", "Bearer " + authToken)
                 .when()
                 .get(endpoint);
-
-        System.out.println("Resposta ao acessar recurso protegido: " + response.asPrettyString());
     }
 
-    //credencials invalidas
+    // ----- CENÁRIO: login com credenciais inválidas ----
     @Dado("que tento fazer login com credenciais inválidas")
     public void queTentoFazerLoginComCredenciaisInvalidas() {
-        // Utilizando credenciais que sabemos que são inválidas
         this.username = "usuario_inexistente";
         this.password = "senha_incorreta";
     }
@@ -136,8 +131,6 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
                 .body(jsonBody)
                 .when()
                 .post("/auth/login");
-
-        System.out.println("Resposta de login com credenciais inválidas: " + response.asPrettyString());
     }
 
     @E("a resposta deve conter a mensagem {string}")
@@ -160,8 +153,6 @@ public class LoginStepsDefinition extends BaseStepDefinitions {
                 .body(jsonBody)
                 .when()
                 .post("/auth/login");
-
-        System.out.println("Resposta de login com usuário inexistente: " + response.asPrettyString());
     }
 
 }
