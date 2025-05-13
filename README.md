@@ -190,11 +190,18 @@ pom.xml → Dependências RestAssured + Cucumber
 
 ## ▶️ Executando os Testes
 
-1. Certifique-se de seguir as instruções presentes no repositório principal da API que seria 
+### 1. Clone o repositório da API
 ```bash
-https://github.com/sylviavitoria/DesafioNaruto
+git clone https://github.com/sylviavitoria/DesafioNaruto.git
 ```
-2. Rode a API com:
+### e o repositório da automação
+```bash
+https://github.com/sylviavitoria/RestAssuredAutomacao
+```
+
+### 2. Siga as intruções do repositório da API Naruto, onde vai fazer as configurações essencias para rodar a aplição
+
+3. Rode a API com:
 
 ```bash
 mvn spring-boot:run
@@ -202,7 +209,7 @@ mvn spring-boot:run
 
 > ⚠️ **Importante:** Rodar localmente com `mvn spring-boot:run` garante melhor resultado do que via Docker.
 
-3. Baixe o plugin do Cucumber no seu IDE, aconselhado usar IntelliJ IDEA.
+4. Baixe o plugin do Cucumber no seu IDE, aconselhado usar IntelliJ IDEA.
 4. Execute os testes clicando no botão de execução do arquivo `CucumberRunner.java`.
 
 ---
